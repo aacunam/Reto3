@@ -25,36 +25,36 @@ public class ReservaServicios {
         if (reservation.getIdReservation() == null) {
             return reservaRepositorio.save(reservation);
         } else {
-            Optional<Reserva> raux = reservaRepositorio.getReserva(reservation.getIdReservation());
-            if (raux.isEmpty()) {
-                return reservaRepositorio.save(reservation);
-            } else {
-                return reservation;
-            }
+            // Optional<Reserva> raux =
+            // reservaRepositorio.getReserva(reservation.getIdReservation());
+            // if (raux.isEmpty()) {
+            return reservaRepositorio.save(reservation);
+            /*
+             * } else { return reservation; }
+             */
         }
     }
 
+    public Reserva update(Reserva reserva) {
+        if (reserva.getIdReservation() != null) {
+            Optional<Reserva> e = reservaRepositorio.getReserva(reserva.getIdReservation());
+            // if (!e.isEmpty()) {
 
-    public Reserva update(Reserva reserva){
-        if(reserva.getIdReservation()!=null){
-            Optional<Reserva> e= reservaRepositorio.getReserva(reserva.getIdReservation());
-            if(!e.isEmpty()){
-
-                if(reserva.getStartDate()!=null){
-                    e.get().setStartDate(reserva.getStartDate());
-                }
-                if(reserva.getDevolutionDate()!=null){
-                    e.get().setDevolutionDate(reserva.getDevolutionDate());
-                }
-                if(reserva.getStatus()!=null){
-                    e.get().setStatus(reserva.getStatus());
-                }
-                reservaRepositorio.save(e.get());
-                return e.get();
-            }else{
-                return reserva;
+            if (reserva.getStartDate() != null) {
+                e.get().setStartDate(reserva.getStartDate());
             }
-        }else{
+            if (reserva.getDevolutionDate() != null) {
+                e.get().setDevolutionDate(reserva.getDevolutionDate());
+            }
+            if (reserva.getStatus() != null) {
+                e.get().setStatus(reserva.getStatus());
+            }
+            reservaRepositorio.save(e.get());
+            return e.get();
+            /*
+             * } else { return reserva; }
+             */
+        } else {
             return reserva;
         }
     }

@@ -35,12 +35,12 @@ public class MensajeServicios {
         if(mensaje.getIdMessage()==null){
             return mensajeRepositorio.save(mensaje);
         }else{
-            Optional<Mensaje> paux=mensajeRepositorio.getMensaje(mensaje.getIdMessage());
-            if(paux.isEmpty()){
+  //          Optional<Mensaje> paux=mensajeRepositorio.getMensaje(mensaje.getIdMessage());
+ //           if(paux.isEmpty()){
                 return mensajeRepositorio.save(mensaje);
-            }else{
+ /*           }else{
                 return mensaje;
-            }
+            }*/
         }
     }
 
@@ -50,12 +50,12 @@ public class MensajeServicios {
     public Mensaje update(Mensaje mensaje){
         if(mensaje.getIdMessage()!=null){
             Optional<Mensaje>g=mensajeRepositorio.getMensaje(mensaje.getIdMessage());
-            if(!g.isEmpty()){
+  //          if(!g.isEmpty()){
                 if(mensaje.getMessageText()!=null){
                     g.get().setMessageText(mensaje.getMessageText());
                 }
                 return mensajeRepositorio.save(g.get());
-            }
+ //           }
         }
         return mensaje;
     }
